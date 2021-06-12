@@ -1,46 +1,55 @@
 <template>
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col orders">
-        <div
-          id="orders"
-          v-for="order in this.ordersProp"
-		  :key="order.id"
-		  class="order"
-        >
-		<img :key="order.id + '-img'" :src="order.icon" height="100px" width="100px"/>
-		</div>
-      </div>
+    <div class="container main p-2">
+        <div class="d-flex justify-content-center p-1">
+            <div class="row orders">
+                <div class="col">
+                    <div
+                        id="orders"
+                        v-for="order in this.ordersProp"
+                        :key="order.id"
+                        class="order p-1"
+                    >
+                        <img
+                            :key="order.id + '-img'"
+                            :src="order.icon"
+                            height="64px"
+                            width="64px"
+                        />
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 </template>
 
 <script>
-    export default {
-		name: "orders",
-		inheritAttrs: false,
-		props: {
-			ordersProp: Array,
-		},
-		data: () => {
-			return {
-			
-			}
-		},
-		methods:
-		{
-		},
-		mounted() {
-		}
-	}
+export default {
+    name: "orders",
+    inheritAttrs: false,
+    props: {
+        ordersProp: Array,
+    },
+    data: () => {
+        return {};
+    },
+    methods: {},
+    mounted() {},
+};
 </script>
 
 <style scoped>
- .order {
-	 float:left;
- }
- .orders {
-	 overflow: hidden;
-	 height: 100px;
- }
+.main {
+    background: rgb(179, 43, 43);
+    width: 512px;
+}
+
+.order {
+    float: left;
+}
+
+.orders {
+    overflow: hidden;
+    height: 70px;
+    width: 512px;
+}
 </style>
