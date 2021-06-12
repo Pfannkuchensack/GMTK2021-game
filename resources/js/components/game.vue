@@ -34,10 +34,10 @@ export default {
         { type: 23, name: "Harkekopf" },
       ],
       ordertypes: [
-        { type: 100, type1: 20, type2: 11, name: "Schwert" },
-        { type: 101, type1: 21, type2: 12, name: "Axe" },
-        { type: 102, type1: 22, type2: 14, name: "Hammer" },
-        { type: 103, type1: 23, type2: 13, name: "Harke" },
+        { type: 100, type1: 20, type2: 11, name: "Schwert", time: 2000 },
+        { type: 101, type1: 21, type2: 12, name: "Axe", time: 4000 },
+        { type: 102, type1: 22, type2: 14, name: "Hammer", time: 1000 },
+        { type: 103, type1: 23, type2: 13, name: "Harke", time: 3000 },
       ],
       icons: [
         {
@@ -66,6 +66,7 @@ export default {
       tmp.id = this.cnt;
       tmp.icon = this.icons.find((element) => element.name == tmp.name).icon;
       this.orders.push(Object.assign({}, tmp));
+      return Object.assign({}, tmp);
     },
     deleteorder() {
       this.orders.shift();
@@ -75,13 +76,13 @@ export default {
       //clearTimeout((this.intervalid1);
     },
     ordersystem() {
-      this.addorder();
-	  let min = 2000;
-	  let max = 10000;
-	  if(this.orders.length > 4)
-	  	min = 5000;
-	  if(this.orders.length > 7)
-	  	min = 10000;
+      let neworder = this.addorder();
+      let min = 2000;
+      let max = 10000;
+      if (this.orders.length > 4) min = 5000;
+      if (this.orders.length > 7) min = 10000;
+      max = max + neworder.time;
+      min = min + neworder.time;
       let next = Math.floor(Math.random() * (max - min + 1) + min);
       console.log(next);
       this.settimeout = setTimeout(
