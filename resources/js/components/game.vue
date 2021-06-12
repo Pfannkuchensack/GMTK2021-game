@@ -18,7 +18,6 @@ export default {
             intervalid1: false,
             playerX: 0,
             playerY: 0,
-            keyPressed: false,
         };
     },
     methods: {
@@ -52,9 +51,6 @@ export default {
         );
 
         this._keyDownListener = function(e) {
-            if (this.keyPressed) {
-                return;
-            }
             if (e.key === "w") {
                 e.preventDefault(); // present "Save Page" from getting triggered.
                 this.playerY = this.playerY - 1 < 0 ? 0 : this.playerY - 1;
@@ -71,34 +67,12 @@ export default {
                 e.preventDefault(); // present "Save Page" from getting triggered.
                 this.playerX = this.playerX + 1 > 7 ? 7 : this.playerX + 1;
             }
-            if (
-                e.key === "w" ||
-                e.key === "s" ||
-                e.key === "a" ||
-                e.key === "d"
-            ) {
-                this.keyPressed = true;
-            }
-        };
-
-        this._keyUpListener = function(e) {
-            if (
-                e.key === "w" ||
-                e.key === "s" ||
-                e.key === "a" ||
-                e.key === "d"
-            ) {
-                e.preventDefault(); // present "Save Page" from getting triggered.
-                this.keyPressed = false;
-            }
         };
 
         document.addEventListener("keydown", this._keyDownListener.bind(this));
-        document.addEventListener("keyup", this._keyUpListener.bind(this));
     },
     beforeDestroy() {
         document.removeEventListener("keydown", this._keyDownListener);
-        document.addEventListener("keyup", this._keyUpListener.bind(this));
     },
 };
 </script>

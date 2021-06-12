@@ -8,9 +8,12 @@
                 :y="y - 1"
                 class="fieldTile"
             >
-                <span v-if="x - 1 == playerXProp && y - 1 == playerYProp"
-                    >X</span
-                >
+                <img
+                    v-if="x - 1 == playerXProp && y - 1 == playerYProp"
+                    src="https://png.pngtree.com/png-clipart/20201212/ourmid/pngtree-car-clipart-small-red-car-png-image_2537665.jpg"
+                    :width="40"
+                    :height="40"
+                />
             </div>
         </div>
     </div>
@@ -37,7 +40,11 @@ export default {
 
 <style scoped>
 .fieldTile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 40px;
     height: 40px;
+    border: 1px solid black;
 }
 </style>
