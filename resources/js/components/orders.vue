@@ -5,10 +5,10 @@
         <div
           id="orders"
           v-for="order in this.ordersProp"
-          :key="order.id"
+		  :key="order.id"
 		  class="order"
         >
-		<img :src="order.icon" height="100px" width="100px"/>
+		<img :key="order.id + '-img'" :src="order.icon" height="100px" width="100px"/>
 		</div>
       </div>
     </div>
