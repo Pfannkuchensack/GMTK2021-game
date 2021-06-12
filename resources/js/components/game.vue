@@ -25,10 +25,10 @@ export default {
             playerInventory: 0,
             itemstypes: [
                 { type: 0, name: "Leer" },
-                { type: 1, name: "Eisen" },
-                { type: 2, name: "Schmelzendes Eisen" },
-                { type: 3, name: "Geschmolzendes Eisen" },
-                { type: 4, name: "Zerschmolzendes Eisen" },
+                { type: 1, name: "Eisen", ticks: 2 },
+                { type: 2, name: "Schmelzendes Eisen", ticks: 10 },
+                { type: 3, name: "Geschmolzendes Eisen", ticks: 20 },
+                { type: 4, name: "Zerschmolzendes Eisen", ticks: 0 },
                 { type: 10, name: "Holz" },
                 { type: 11, name: "Schwert Schaft" },
                 { type: 12, name: "Axt Schaft" },
@@ -198,7 +198,7 @@ export default {
                                 ) {
                                     // TODO check if location inventory has space
                                     location.inventory.push(
-                                        this.playerInventory
+                                        { type: this.playerInventory, ticks: this.itemstypes.find((e) => e.type == this.playerInventory).ticks}
                                     );
                                     this.playerInventory = 0;
                                 }
