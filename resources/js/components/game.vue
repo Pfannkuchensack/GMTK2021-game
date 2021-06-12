@@ -4,7 +4,7 @@
         <gamefield
             :playerXProp="playerX"
             :playerYProp="playerY"
-            :playerInventoryProp="playerIventory"
+            :playerInventoryProp="playerInventory"
         ></gamefield>
     </div>
 </template>
@@ -22,22 +22,22 @@ export default {
             settimeout: false,
             playerX: 0,
             playerY: 0,
-            playerIventory: 0,
+            playerInventory: 0,
             itemstypes: [
-                { type: 0, name: "Nix" },
+                { type: 0, name: "Leer" },
                 { type: 1, name: "Eisen" },
-                { type: 2, name: "schmelzendes Eisen" },
+                { type: 2, name: "Schmelzendes Eisen" },
                 { type: 3, name: "Geschmolzendes Eisen" },
-                { type: 4, name: "zerschmolzendes Eisen" },
+                { type: 4, name: "Zerschmolzendes Eisen" },
                 { type: 10, name: "Holz" },
                 { type: 11, name: "Schwert Schaft" },
-                { type: 12, name: "Axe Schaft" },
+                { type: 12, name: "Axt Schaft" },
                 { type: 13, name: "Harke Schaft" },
-                { type: 14, name: "Tool Schaft" },
+                { type: 14, name: "Werkzeug Schaft" },
                 { type: 20, name: "Schwertklinge" },
-                { type: 21, name: "Axeklinge" },
+                { type: 21, name: "Axtklinge" },
                 { type: 22, name: "Hammerkopf" },
-                { type: 23, name: "Harkekopf" },
+                { type: 23, name: "Harkenkopf" },
             ],
             ordertypes: [
                 {
@@ -71,6 +71,29 @@ export default {
                     name: "Harke",
                     icon:
                         "https://scratchwars.com/photos/zbrane_avatar/f/0/9.png?m=1485025836",
+                },
+            ],
+            //Actions:
+            // PICKUP_ACTION: 0,
+            // PLACE_ACTION: 1,
+            // BOTH_ACTION: 2,
+            // interaction positions
+            interactionLocations: [
+                {
+                    name: "Eisen",
+                    actionType: 0,
+                    x: 0,
+                    y: 0,
+                    pickupType: 1,
+                },
+                {
+                    name: "Ofen",
+                    actionType: 2,
+                    x: 7,
+                    y: 2,
+                    inventory: [],
+                    inventorySize: 1,
+                    acceptTypes: [1, 2, 3, 4],
                 },
             ],
         };
@@ -135,6 +158,59 @@ export default {
             if (e.key === "d") {
                 e.preventDefault(); // present "Save Page" from getting triggered.
                 this.playerX = this.playerX + 1 > 7 ? 7 : this.playerX + 1;
+            }
+            if (e.key === " ") {
+                this.interactionLocations.forEach((location) => {
+                    if (
+                        location.x == this.playerX &&
+                        location.y == this.playerY
+                    ) {
+                        if (
+                            location.actionType == 0 &&
+                            this.playerInventory == 0
+                        ) {
+                            // PickupAction
+                            this.playerInventory = location.pickupType; //location.pickupType;
+                        } else if (
+                            location.actionType == 1 &&
+                            this.playerInventory != 0
+                        ) {
+                            // PlaceAction
+                            console.log("place item");
+                            if (
+                                location.acceptTypes.includes(
+                                    this.playerInventory
+                                )
+                            ) {
+                                location.inventory = this.playerinventory;
+                                this.playerInventory = 0;
+                            }
+                        } else if (location.actionType == 2) {
+                            // BothAction
+                            console.log("both");
+                            // PlaceAction
+                            if (this.playerInventory != 0) {
+                                console.log("player has item");
+                                if (
+                                    location.acceptTypes.includes(
+                                        this.playerInventory
+                                    )
+                                ) {
+                                    // TODO check if location inventory has space
+                                    location.inventory.push(
+                                        this.playerInventory
+                                    );
+                                    this.playerInventory = 0;
+                                }
+                            } else if (
+                                this.playerInventory == 0 &&
+                                location.inventory.length > 0
+                            ) {
+                                this.playerInventory = location.inventory.shift();
+                            }
+                        }
+                    }
+                });
             }
         };
 
