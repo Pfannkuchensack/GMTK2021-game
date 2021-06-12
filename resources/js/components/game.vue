@@ -15,7 +15,7 @@ export default {
     return {
       orders: [],
       cnt: 0,
-      intervalid1: false,
+      settimeout: false,
       playerX: 0,
       playerY: 0,
       items: [
@@ -62,7 +62,7 @@ export default {
   methods: {
     addorder() {
       this.cnt = this.cnt + 1;
-      let tmp = _.sample(this.ordertypes);//[Math.floor(Math.random()*this.ordertypes.length) | 0];
+      let tmp = _.sample(this.ordertypes); //[Math.floor(Math.random()*this.ordertypes.length) | 0];
       tmp.id = this.cnt;
       tmp.icon = this.icons.find((element) => element.name == tmp.name).icon;
       this.orders.push(Object.assign({}, tmp));
@@ -74,11 +74,22 @@ export default {
       clearInterval(this.intervalid1);
       //clearTimeout((this.intervalid1);
     },
+    ordersystem() {
+      this.addorder();
+      let next = Math.floor(Math.random() * (6000 - 2000 + 1) + 2000);
+      console.log(next);
+      this.settimeout = setTimeout(
+        function () {
+          this.ordersystem();
+        }.bind(this),
+        next
+      );
+    },
   },
   mounted() {
-    this.intervalid1 = setInterval(
+    this.settimeout = setTimeout(
       function () {
-        this.addorder();
+        this.ordersystem();
       }.bind(this),
       2000
     );
