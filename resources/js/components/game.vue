@@ -1,7 +1,7 @@
 <template>
   <div>
     <orders :ordersProp="orders"></orders>
-    <gamefield :playerXProp="playerX" :playerYProp="playerY"></gamefield>
+    <gamefield :playerXProp="playerX" :playerYProp="playerY" :playerIventoryProp="playerIventory"></gamefield>
   </div>
 </template>
 
@@ -18,11 +18,13 @@ export default {
       settimeout: false,
       playerX: 0,
       playerY: 0,
-      items: [
-        { type: 0, name: "Eisen" },
-        { type: 1, name: "schmelzendes Eisen" },
-        { type: 2, name: "Geschmolzendes Eisen" },
-        { type: 3, name: "zerschmolzendes Eisen" },
+	  playerIventory: 0,
+      itemstypes: [
+		{ type: 0, name: "Nix" },
+        { type: 1, name: "Eisen" },
+        { type: 2, name: "schmelzendes Eisen" },
+        { type: 3, name: "Geschmolzendes Eisen" },
+        { type: 4, name: "zerschmolzendes Eisen" },
         { type: 10, name: "Holz" },
         { type: 11, name: "Schwert Schaft" },
         { type: 12, name: "Axe Schaft" },
