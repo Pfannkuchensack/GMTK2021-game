@@ -76,7 +76,13 @@ export default {
     },
     ordersystem() {
       this.addorder();
-      let next = Math.floor(Math.random() * (6000 - 2000 + 1) + 2000);
+	  let min = 2000;
+	  let max = 10000;
+	  if(this.orders.length > 4)
+	  	min = 5000;
+	  if(this.orders.length > 7)
+	  	min = 10000;
+      let next = Math.floor(Math.random() * (max - min + 1) + min);
       console.log(next);
       this.settimeout = setTimeout(
         function () {
