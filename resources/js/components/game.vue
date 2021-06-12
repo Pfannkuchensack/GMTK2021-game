@@ -29,7 +29,7 @@ export default {
                 { type: 2, name: "Schmelzendes Eisen", ticks: 10 },
                 { type: 3, name: "Geschmolzendes Eisen", ticks: 20 },
                 { type: 4, name: "Zerschmolzendes Eisen", ticks: 0 },
-                { type: 10, name: "Holz" },
+                { type: 10, name: "Holz", ticks: 10 },
                 { type: 11, name: "Schwert Schaft" },
                 { type: 12, name: "Axt Schaft" },
                 { type: 13, name: "Harke Schaft" },
@@ -86,6 +86,13 @@ export default {
                     y: 0,
                     pickupType: 1,
                 },
+				{
+                    name: "Holz",
+                    actionType: 0,
+                    x: 0,
+                    y: 2,
+                    pickupType: 10,
+                },
                 {
                     name: "Ofen",
                     actionType: 2,
@@ -94,6 +101,15 @@ export default {
                     inventory: [],
                     inventorySize: 1,
                     acceptTypes: [1, 2, 3, 4],
+                },
+				{
+                    name: "Säge",
+                    actionType: 2,
+                    x: 7,
+                    y: 0,
+                    inventory: [],
+                    inventorySize: 1,
+                    acceptTypes: [10],
                 },
             ],
         };
@@ -104,7 +120,7 @@ export default {
             let tmp = _.sample(this.ordertypes); //[Math.floor(Math.random()*this.ordertypes.length) | 0];
             tmp.id = this.cnt;
             tmp.icon = this.icons.find(
-                (element) => element.name == tmp.name
+                (e) => e.name == tmp.name
             ).icon;
             this.orders.push(Object.assign({}, tmp));
             return Object.assign({}, tmp);
@@ -170,13 +186,12 @@ export default {
                             this.playerInventory == 0
                         ) {
                             // PickupAction
-                            this.playerInventory = location.pickupType; //location.pickupType;
+                            this.playerInventory = location.pickupType;
                         } else if (
                             location.actionType == 1 &&
                             this.playerInventory != 0
                         ) {
                             // PlaceAction
-                            console.log("place item");
                             if (
                                 location.acceptTypes.includes(
                                     this.playerInventory
@@ -187,26 +202,26 @@ export default {
                             }
                         } else if (location.actionType == 2) {
                             // BothAction
-                            console.log("both");
-                            // PlaceAction
-                            if (this.playerInventory != 0) {
-                                console.log("player has item");
+                            if (this.playerInventory != 0) { // PlaceAction
                                 if (
                                     location.acceptTypes.includes(
                                         this.playerInventory
                                     )
                                 ) {
-                                    // TODO check if location inventory has space
-                                    location.inventory.push(
-                                        { type: this.playerInventory, ticks: this.itemstypes.find((e) => e.type == this.playerInventory).ticks}
-                                    );
-                                    this.playerInventory = 0;
+									if(location.inventorySize > location.inventory.length) // Gibt noch Platz -> Ja
+									{
+										location.inventory.push(
+											{ type: this.playerInventory, ticks: this.itemstypes.find((e) => e.type == this.playerInventory).ticks}
+										);
+										this.playerInventory = 0;
+									}
                                 }
-                            } else if (
+                            } else if ( // PickupAction
                                 this.playerInventory == 0 &&
                                 location.inventory.length > 0
                             ) {
-                                this.playerInventory = location.inventory.shift();
+								let tmp = location.inventory.shift();
+                                this.playerInventory = tmp.type;
                             }
                         }
                     }
