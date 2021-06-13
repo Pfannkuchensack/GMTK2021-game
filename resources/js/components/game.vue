@@ -269,8 +269,25 @@ export default {
           location.inventory.length > 0 &&
           location.name == "Werkbank"
         ) {
-          location.inventory.forEach((item, i, a) => {
-            console.log(item);
+          this.ordertypes.forEach((ordertype) => {
+			  var teil1 = false;
+			  var teil2 = false;
+            location.inventory.forEach((item, i, a) => {
+				if(ordertype.type1 == item.type)
+					teil1 = true;
+				if(ordertype.type2 == item.type)
+					teil2 = true;
+            });
+			if(teil1 && teil2)
+			{ // teil hergestellt
+				location.inventory.forEach((item, i, a) => {
+				if(ordertype.type1 == item.type)
+					a.splice(i, 1);
+				if(ordertype.type2 == item.type)
+					a.splice(i, 1);
+            });
+			location.inventory.push(Object.assign({}, ordertype))
+			}
           });
         }
       });
@@ -287,7 +304,7 @@ export default {
       function () {
         this.ticksystem();
       }.bind(this),
-      1000
+      100
     );
 
     this._keyDownListener = function (e) {
