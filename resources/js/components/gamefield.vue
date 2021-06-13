@@ -117,18 +117,7 @@ export default {
         return {
             fieldWidth: 10,
             fieldHeight: 10,
-            inventoryImage: "/images/blank.png",
         };
-    },
-    watch: {
-        playerInventoryProp: function(val) {
-            let name = "";
-            this.itemTypesProp.forEach((itemType) => {
-                if (itemType.type == val) {
-                    name = itemType.name;
-                }
-            });
-        },
     },
     methods: {
         isInteractionLocation(x, y) {
