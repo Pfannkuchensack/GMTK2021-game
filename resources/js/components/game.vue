@@ -5,9 +5,9 @@
             :playerXProp="playerX"
             :playerYProp="playerY"
             :playerInventoryProp="playerInventory"
-			:furnaceInventoryProp="interactionLocations[2].inventory"
-			:cleaverInventoryProp="interactionLocations[3].inventory"
-			:anvilInventoryProp="interactionLocations[3].inventory"
+            :itemTypesProp="itemstypes"
+            :iconsProp="icons"
+            :interactionLocationsProp="interactionLocations"
         ></gamefield>
     </div>
 </template>
@@ -67,6 +67,12 @@ export default {
             ],
             icons: [
                 {
+                    type: 0,
+                    name: "Leer",
+                    icon: "/images/blank.png",
+                },
+                {
+                    type: 0,
                     name: "Schwert",
                     icon: "/images/items/broad-dagger.png",
                 },
@@ -82,6 +88,14 @@ export default {
                     name: "Harke",
                     icon:
                         "https://scratchwars.com/photos/zbrane_avatar/f/0/9.png?m=1485025836",
+                },
+                {
+                    name: "Eisen",
+                    icon: "/images/items/metal-bar.png",
+                },
+                {
+                    name: "Holz",
+                    icon: "/images/log.png",
                 },
             ],
             //Actions:
@@ -105,22 +119,37 @@ export default {
                     pickupType: 10,
                 },
                 {
+                    name: "Müll",
+                    actionType: 1,
+                    x: 0,
+                    y: 4,
+                },
+                {
                     name: "Ofen",
                     actionType: 2,
                     x: 4,
                     y: 2,
                     inventory: [],
-                    inventorySize: 1,
+                    inventorySize: 4,
                     acceptTypes: [1, 2, 3, 4],
                 },
                 {
                     name: "Säge",
                     actionType: 2,
                     x: 4,
-                    y: 0,
+                    y: 3,
                     inventory: [],
                     inventorySize: 1,
                     acceptTypes: [10],
+                },
+                {
+                    name: "Amboss",
+                    actionType: 2,
+                    x: 4,
+                    y: 4,
+                    inventory: [],
+                    inventorySize: 1,
+                    acceptTypes: [3],
                 },
             ],
         };
@@ -194,7 +223,7 @@ export default {
         );
         this.setinterval = setInterval(
             function() {
-                this.ticksystem();
+                //this.ticksystem();
             }.bind(this),
             1000
         );
@@ -233,14 +262,10 @@ export default {
                             this.playerInventory != 0
                         ) {
                             // PlaceAction
-                            if (
-                                location.acceptTypes.includes(
-                                    this.playerInventory
-                                )
-                            ) {
-                                location.inventory = this.playerinventory;
-                                this.playerInventory = 0;
-                            }
+
+                            // TRASH
+                            location.inventory = this.playerinventory;
+                            this.playerInventory = 0;
                         } else if (location.actionType == 2) {
                             // BothAction
                             if (this.playerInventory != 0) {

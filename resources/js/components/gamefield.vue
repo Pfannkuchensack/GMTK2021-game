@@ -11,6 +11,12 @@
                 <div>
                     <img src="/images/log.png" height="64px" />
                 </div>
+                <div>
+                    <img src="/images/blank.png" height="64px" />
+                </div>
+                <div>
+                    <img src="/images/trash-can.png" height="64px" />
+                </div>
             </div>
             <div class="gridField">
                 <div
@@ -18,14 +24,22 @@
                     :key="index - 1"
                     :x="(index - 1) % 5"
                     :y="Math.floor((index - 1) / 5)"
-                    class="fieldTile"
+                    :class="[
+                        'fieldTile',
+                        isInteractionLocation(
+                            (index - 1) % 5,
+                            Math.floor((index - 1) / 5)
+                        )
+                            ? 'interactionTile'
+                            : 'other',
+                    ]"
                 >
                     <img
                         v-if="
                             (index - 1) % 5 == playerXProp &&
                                 Math.floor((index - 1) / 5) == playerYProp
                         "
-                        src="/images/fat.png"
+                        src="/images/fat-white.png"
                         width="64"
                         height="64"
                     />
@@ -51,9 +65,39 @@
                     <img src="/images/anvil.png" height="64px" />
                 </div>
             </div>
+            <div>
+                <div class="locationInventory">
+                    <img src="/images/blank.png" height="64px" />
+                </div>
+                <div>
+                    <img src="/images/blank.png" height="64px" />
+                </div>
+                <div class="locationInventory">
+                    <div class="locationInventoryItem">
+                        <div class="col">
+                            <img
+                                v-for="item in interactionLocationsProp[3]
+                                    .inventory"
+                                :key="item.type"
+                                v-bind:src="getItemIcon(item.type)"
+                                height="32px"
+                            />
+                        </div>
+                    </div>
+                </div>
+                <div class="locationInventory">
+                    <img src="/images/blank.png" height="64px" />
+                </div>
+                <div class="locationInventory">
+                    <img src="/images/blank.png" height="64px" />
+                </div>
+            </div>
         </div>
         <div class="row">
             <span>Inventory: {{ playerInventoryProp }}</span>
+        </div>
+        <div class="row">
+            <img v-bind:src="this.inventoryImage" height="64px" />
         </div>
     </div>
 </template>
@@ -66,17 +110,58 @@ export default {
         playerXProp: Number,
         playerYProp: Number,
         playerInventoryProp: Number,
-		furnaceInventoryProp: Array,
-		cleaverInventoryProp: Array,
-		anvilInventoryProp: Array,
+        itemTypesProp: Array,
+        iconsProp: Array,
+        interactionLocationsProp: Array,
     },
     data: () => {
         return {
             fieldWidth: 10,
             fieldHeight: 10,
+            inventoryImage: "/images/blank.png",
         };
     },
-    methods: {},
+    watch: {
+        playerInventoryProp: function(val) {
+            let name = "";
+            this.itemTypesProp.forEach((itemType) => {
+                if (itemType.type == val) {
+                    name = itemType.name;
+                }
+            });
+            this.iconsProp.forEach((icon) => {
+                if (icon.name == name) {
+                    this.inventoryImage = icon.icon;
+                }
+            });
+        },
+    },
+    methods: {
+        isInteractionLocation(x, y) {
+            let interactionLocation = false;
+            this.interactionLocationsProp.forEach((location) => {
+                if (location.x == x && location.y == y) {
+                    interactionLocation = true;
+                }
+            });
+            return interactionLocation;
+        },
+        getItemIcon(type) {
+            let itemIcon = "/images/blank.png";
+            let name = "";
+            this.itemTypesProp.forEach((itemType) => {
+                if (itemType.type == type) {
+                    name = itemType.name;
+                }
+            });
+            this.iconsProp.forEach((icon) => {
+                if (icon.name == name) {
+                    itemIcon = icon.icon;
+                }
+            });
+            return itemIcon;
+        },
+    },
     mounted() {},
 };
 </script>
@@ -102,5 +187,20 @@ export default {
     display: flex;
     flex-wrap: wrap;
     width: 320px;
+}
+
+.interactionTile {
+    background: rgb(77, 77, 146);
+}
+
+.locationInventory {
+    overflow: hidden;
+    width: 64px;
+    height: 64px;
+    border: 1px solid rgb(66, 5, 5);
+}
+
+.locationInventoryItem {
+    float: left;
 }
 </style>
