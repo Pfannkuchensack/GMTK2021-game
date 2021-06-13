@@ -74,8 +74,8 @@
                         <div class="col">
                             <div class="locationInventoryItem">
                                 <img
-                                    v-for="(item,i) in interactionLocationsProp[3]
-                                        .inventory"
+                                    v-for="(item,
+                                    i) in interactionLocationsProp[3].inventory"
                                     :key="i"
                                     :src="item.icon"
                                     width="31px"
@@ -86,10 +86,36 @@
                     </div>
                 </div>
                 <div class="locationInventory">
-                    <img src="/images/blank.png" height="64px" />
+                    <div class="row">
+                        <div class="col">
+                            <div class="locationInventoryItem">
+                                <img
+                                    v-for="(item,
+                                    i) in interactionLocationsProp[4].inventory"
+                                    :key="i"
+                                    :src="item.icon"
+                                    width="31px"
+                                    height="31px"
+                                />
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="locationInventory">
-                    <img src="/images/blank.png" height="64px" />
+                    <div class="row">
+                        <div class="col">
+                            <div class="locationInventoryItem">
+                                <img
+                                    v-for="(item,
+                                    i) in interactionLocationsProp[5].inventory"
+                                    :key="i"
+                                    :src="item.icon"
+                                    width="31px"
+                                    height="31px"
+                                />
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -97,7 +123,13 @@
             <span>Inventory: {{ playerInventoryProp }}</span>
         </div>
         <div class="row">
-            <img v-bind:src="itemTypesProp.find((e) => e.type == playerInventoryProp).icon" height="64px" />
+            <img
+                v-bind:src="
+                    itemTypesProp.find((e) => e.type == playerInventoryProp)
+                        .icon
+                "
+                height="64px"
+            />
         </div>
     </div>
 </template>
