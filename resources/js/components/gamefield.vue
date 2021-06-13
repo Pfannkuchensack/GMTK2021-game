@@ -64,7 +64,20 @@
             </div>
             <div>
                 <div class="locationInventory">
-                    <img src="/images/blank.png" height="64px" />
+                    <div class="row">
+                        <div class="col">
+                            <div class="locationInventoryItem">
+                                <img
+                                    v-for="(item,
+                                    i) in interactionLocationsProp[6].inventory"
+                                    :key="i"
+                                    :src="item.icon"
+                                    width="31px"
+                                    height="31px"
+                                />
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div>
                     <img src="/images/blank.png" height="64px" />
