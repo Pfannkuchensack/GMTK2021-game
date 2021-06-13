@@ -146,6 +146,15 @@ export default {
                     inventorySize: 1,
                     acceptTypes: [3],
                 },
+				{
+                    name: "Werkbank",
+                    actionType: 1,
+                    x: 4,
+                    y: 0,
+                    inventory: [],
+                    inventorySize: 2,
+                    acceptTypes: [11,12,13,14,20,21,22,23],
+                },
             ],
         };
     },
@@ -231,7 +240,7 @@ export default {
                     });
                 }
 
-				// Ticks für die Anvil
+				// Ticks für die Amboss
 				if (
                     typeof location.inventory != "undefined" &&
                     location.inventory.length > 0 && location.name == 'Amboss'
@@ -246,6 +255,16 @@ export default {
                             ).icon;
                             item.ticks = -1;
                         }
+                    });
+                }
+
+				// Ticks für die Werkbank
+				if (
+                    typeof location.inventory != "undefined" &&
+                    location.inventory.length > 0 && location.name == 'Werkbank'
+                ) {
+                    location.inventory.forEach((item, i, a) => {
+                        console.log(item);
                     });
                 }
             });
