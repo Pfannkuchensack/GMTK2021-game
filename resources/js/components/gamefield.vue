@@ -3,19 +3,19 @@
         <div class="gamefield">
             <div>
                 <div>
-                    <img src="/images/metal-bar.png" height="64px" />
+                    <img src="images/metal-bar.png" height="64px" />
                 </div>
                 <div>
-                    <img src="/images/blank.png" height="64px" />
+                    <img src="images/blank.png" height="64px" />
                 </div>
                 <div>
-                    <img src="/images/log.png" height="64px" />
+                    <img src="images/log.png" height="64px" />
                 </div>
                 <div>
-                    <img src="/images/blank.png" height="64px" />
+                    <img src="images/blank.png" height="64px" />
                 </div>
                 <div>
-                    <img src="/images/trash-can.png" height="64px" />
+                    <img src="images/trash-can.png" height="64px" />
                 </div>
             </div>
             <div class="gridField">
@@ -39,7 +39,7 @@
                             (index - 1) % 5 == playerXProp &&
                                 Math.floor((index - 1) / 5) == playerYProp
                         "
-                        src="/images/fat-white.png"
+                        src="images/fat-white.png"
                         width="64"
                         height="64"
                     />
@@ -47,19 +47,19 @@
             </div>
             <div>
                 <div>
-                    <img src="/images/toolbox.png" height="64px" />
+                    <img src="images/toolbox.png" height="64px" />
                 </div>
                 <div>
-                    <img src="/images/blank.png" height="64px" />
+                    <img src="images/blank.png" height="64px" />
                 </div>
                 <div>
-                    <img src="/images/furnace.png" height="64px" />
+                    <img src="images/furnace.png" height="64px" />
                 </div>
                 <div>
-                    <img src="/images/cleaver.png" height="64px" />
+                    <img src="images/cleaver.png" height="64px" />
                 </div>
                 <div>
-                    <img src="/images/anvil.png" height="64px" />
+                    <img src="images/anvil.png" height="64px" />
                 </div>
             </div>
             <div>
@@ -80,7 +80,7 @@
                     </div>
                 </div>
                 <div>
-                    <img src="/images/blank.png" height="64px" />
+                    <img src="images/blank.png" height="64px" />
                 </div>
                 <div class="locationInventory">
                     <div class="row">

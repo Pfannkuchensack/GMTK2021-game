@@ -29,41 +29,41 @@ export default {
 	  playerScore: 0,
       playerInventory: 0,
       itemstypes: [
-        { type: 0, name: "Leer", icon: "/images/blank.png" },
+        { type: 0, name: "Leer", icon: "images/blank.png" },
         {
           type: 1,
           name: "Eisen",
           ticks: 2,
           nexttype: 2,
-          icon: "/images/items/metal-bar.png",
+          icon: "images/items/metal-bar.png",
         },
         {
           type: 2,
           name: "Schmelzendes Eisen",
           ticks: 10,
           nexttype: 3,
-          icon: "/images/items/metal-bar-1.png",
+          icon: "images/items/metal-bar-1.png",
         },
         {
           type: 3,
           name: "Geschmolzendes Eisen",
           ticks: 20,
           nexttype: 4,
-          icon: "/images/items/metal-bar-2.png",
+          icon: "images/items/metal-bar-2.png",
         },
         {
           type: 4,
           name: "Zerschmolzendes Eisen",
           ticks: 1,
           nexttype: 0,
-          icon: "/images/items/metal-bar-3.png",
+          icon: "images/items/metal-bar-3.png",
         },
-        { type: 10, name: "Holz", ticks: 10, icon: "/images/log.png" },
+        { type: 10, name: "Holz", ticks: 10, icon: "images/log.png" },
         {
           type: 11,
           name: "Schwert Schaft",
           ticks: -1,
-          icon: "/images/items/broad-dagger-hilt.png",
+          icon: "images/items/broad-dagger-hilt.png",
         },
         { type: 12, name: "Axt Schaft", ticks: -1 },
         { type: 13, name: "Harke Schaft", ticks: -1 },
@@ -72,7 +72,7 @@ export default {
           type: 20,
           name: "Schwertklinge",
           ticks: -1,
-          icon: "/images/items/broad-dagger-blade.png",
+          icon: "images/items/broad-dagger-blade.png",
         },
         { type: 21, name: "Axtklinge", ticks: -1 },
         { type: 22, name: "Hammerkopf", ticks: -1 },
@@ -85,7 +85,7 @@ export default {
           type2: 11,
           name: "Schwert",
           time: 2000,
-          icon: "/images/items/broad-dagger.png",
+          icon: "images/items/broad-dagger.png",
         },
         {
           type: 101,
@@ -93,7 +93,7 @@ export default {
           type2: 12,
           name: "Axe",
           time: 4000,
-          icon: "/images/items/battle-axe.png",
+          icon: "images/items/battle-axe.png",
         },
         {
           type: 102,
@@ -101,7 +101,7 @@ export default {
           type2: 14,
           name: "Hammer",
           time: 1000,
-          icon: "/images/items/claw-hammer.png",
+          icon: "images/items/claw-hammer.png",
         },
         //{ type: 103, type1: 23, type2: 13, name: "Harke", time: 3000 },
       ],
@@ -194,7 +194,6 @@ export default {
       max = max + neworder.time;
       min = min + neworder.time;
       let next = Math.floor(Math.random() * (max - min + 1) + min);
-      //console.log(next);
       this.settimeout = setTimeout(
         function () {
           this.ordersystem();
@@ -203,7 +202,6 @@ export default {
       );
     },
     ticksystem() {
-      console.log("tick");
       this.interactionLocations.forEach((location) => {
         // Ticks für den Ofen -> Schmelzen
         if (
