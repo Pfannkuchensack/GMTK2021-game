@@ -11,7 +11,7 @@
 	<title>{{ config('app.name') }}</title>
 
 	<!-- Styles -->
-	<link href="https://fonts.googleapis.com/css?family=Modak&display=swap" rel="stylesheet" />
+	<link href="https://fonts.google.com/specimen/Mate+SC" rel="stylesheet" />
 	<!-- Select js and css -->
 	<link href="https://cdn.jsdelivr.net/npm/select2@4.0.11/dist/css/select2.min.css" rel="stylesheet" />
 	<link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet" />
@@ -20,7 +20,7 @@
 	<link href="{{ mix('css/app.css') }}" rel="stylesheet">
 
 </head>
-<body>
+<body style="background: rgb(155, 37, 37);">
 	<div id="app">
 		@yield('content')
 	</div>

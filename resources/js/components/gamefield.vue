@@ -132,17 +132,29 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <span>Score: {{ playerScoreProp }}</span>
+        <div class="d-flex justify-content-center">
+            <div class="row infoText">
+                <span>Score: {{ playerScoreProp }}</span>
+            </div>
         </div>
-        <div class="row">
-            <img
-                v-bind:src="
-                    itemTypesProp.find((e) => e.type == playerInventoryProp)
-                        .icon
-                "
-                height="64px"
-            />
+        <div class="d-flex justify-content-center">
+            <div class="row">
+                <div
+                    class="inventory d-flex align-items-center justify-content-center"
+                >
+                    <img
+                        v-bind:src="
+                            itemTypesProp.find(
+                                (e) => e.type == playerInventoryProp
+                            ).icon
+                        "
+                        height="60px"
+                    />
+                </div>
+            </div>
+        </div>
+        <div class="text-center m-5">
+            <img src="images/how_to_play.png" style="border-radius: 20px" />
         </div>
     </div>
 </template>
@@ -155,7 +167,7 @@ export default {
         playerXProp: Number,
         playerYProp: Number,
         playerScoreProp: Number,
-		playerInventoryProp: Number,
+        playerInventoryProp: Number,
         itemTypesProp: Array,
         interactionLocationsProp: Array,
     },
@@ -216,5 +228,18 @@ export default {
 
 .locationInventoryItem {
     float: left;
+}
+
+.infoText {
+    color: white;
+    font-weight: bold;
+    font-family: "Mate SC";
+    font-size: 20px;
+}
+
+.inventory {
+    background: rgb(77, 74, 74);
+    width: 64px;
+    height: 64px;
 }
 </style>

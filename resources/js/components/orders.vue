@@ -1,6 +1,6 @@
 <template>
-    <div class="container main p-2">
-        <div class="d-flex justify-content-center p-1">
+    <div class="d-flex justify-content-center p-2">
+        <div class="d-flex main p-1">
             <div class="row orders">
                 <div class="col">
                     <div
@@ -39,7 +39,7 @@ export default {
 
 <style scoped>
 .main {
-    background: rgb(179, 43, 43);
+    background: rgb(66, 61, 61);
     width: 512px;
 }
 
