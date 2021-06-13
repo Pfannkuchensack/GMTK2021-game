@@ -223,7 +223,7 @@ export default {
         );
         this.setinterval = setInterval(
             function() {
-                //this.ticksystem();
+                this.ticksystem();
             }.bind(this),
             1000
         );

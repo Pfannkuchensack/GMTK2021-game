@@ -70,15 +70,18 @@
                     <img src="/images/blank.png" height="64px" />
                 </div>
                 <div class="locationInventory">
-                    <div class="locationInventoryItem">
+                    <div class="row">
                         <div class="col">
-                            <img
-                                v-for="item in interactionLocationsProp[3]
-                                    .inventory"
-                                :key="item.type"
-                                v-bind:src="getItemIcon(item.type)"
-                                height="32px"
-                            />
+                            <div class="locationInventoryItem">
+                                <img
+                                    v-for="item in interactionLocationsProp[3]
+                                        .inventory"
+                                    :key="item.type"
+                                    v-bind:src="getItemIcon(item.type)"
+                                    width="31px"
+                                    height="31px"
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>
