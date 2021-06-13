@@ -275,8 +275,10 @@ export default {
           var teil2 = false;
           this.ordertypes.forEach((ordertype) => {
             location.inventory.forEach((item, i, a) => {
+			// Zusammenbauen Ja / Nein
               if (ordertype.type1 == item.type) teil1 = i;
               if (ordertype.type2 == item.type) teil2 = i;
+			// Items die Orders sind finden und entfernen
               this.orders.some((order, ii, aa) => {
                 if (order.type == item.type) {
 				  aa.splice(ii, 1);
