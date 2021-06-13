@@ -269,25 +269,31 @@ export default {
           location.inventory.length > 0 &&
           location.name == "Werkbank"
         ) {
+			var teil1 = false;
+            var teil2 = false;
+			var aa = [];
           this.ordertypes.forEach((ordertype) => {
-			  var teil1 = false;
-			  var teil2 = false;
             location.inventory.forEach((item, i, a) => {
-				if(ordertype.type1 == item.type)
-					teil1 = true;
-				if(ordertype.type2 == item.type)
-					teil2 = true;
+              if (ordertype.type1 == item.type) teil1 = i;
+              if (ordertype.type2 == item.type) teil2 = i;
+			  aa = a;
+			  this.orders.forEach((order, ii, aa) => {
+                if (order.type == item.type) {
+                  console.log("Order gefunden -> löschen Item");
+                  a.splice(i, 1);
+				  aa.splice(ii, 1);
+                }
+              });
             });
-			if(teil1 && teil2)
-			{ // teil hergestellt
-				location.inventory.forEach((item, i, a) => {
-				if(ordertype.type1 == item.type)
-					a.splice(i, 1);
-				if(ordertype.type2 == item.type)
-					a.splice(i, 1);
-            });
-			location.inventory.push(Object.assign({}, ordertype))
-			}
+			//console.log((teil1),(teil2));
+            if (teil1 !== false && teil2 !== false) {
+				aa.splice(teil1, 1);
+				aa.splice(teil2, 1);
+				teil1 = false;
+				teil2 = false;
+              // teil hergestellt
+			  location.inventory.push(ordertype);
+            }
           });
         }
       });
