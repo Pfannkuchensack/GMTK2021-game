@@ -74,9 +74,9 @@
                         <div class="col">
                             <div class="locationInventoryItem">
                                 <img
-                                    v-for="item in interactionLocationsProp[3]
+                                    v-for="(item,i) in interactionLocationsProp[3]
                                         .inventory"
-                                    :key="item.type"
+                                    :key="i"
                                     :src="item.icon"
                                     width="31px"
                                     height="31px"
