@@ -171,6 +171,9 @@ export default {
                             item.type = this.itemstypes.find(
                                 (e) => e.type == item.type
                             ).nexttype;
+							item.icon = this.itemstypes.find(
+                                (e) => e.type == item.type
+                            ).icon;
                             item.ticks = this.itemstypes.find(
                                 (e) => e.type == item.type
                             ).ticks;
