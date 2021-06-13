@@ -77,7 +77,7 @@
                                     v-for="item in interactionLocationsProp[3]
                                         .inventory"
                                     :key="item.type"
-                                    v-bind:src="getItemIcon(item.type)"
+                                    :src="item.icon"
                                     width="31px"
                                     height="31px"
                                 />
@@ -111,7 +111,6 @@ export default {
         playerYProp: Number,
         playerInventoryProp: Number,
         itemTypesProp: Array,
-        iconsProp: Array,
         interactionLocationsProp: Array,
     },
     data: () => {
@@ -129,11 +128,6 @@ export default {
                     name = itemType.name;
                 }
             });
-            this.iconsProp.forEach((icon) => {
-                if (icon.name == name) {
-                    this.inventoryImage = icon.icon;
-                }
-            });
         },
     },
     methods: {
@@ -145,21 +139,6 @@ export default {
                 }
             });
             return interactionLocation;
-        },
-        getItemIcon(type) {
-            let itemIcon = "/images/blank.png";
-            let name = "";
-            this.itemTypesProp.forEach((itemType) => {
-                if (itemType.type == type) {
-                    name = itemType.name;
-                }
-            });
-            this.iconsProp.forEach((icon) => {
-                if (icon.name == name) {
-                    itemIcon = icon.icon;
-                }
-            });
-            return itemIcon;
         },
     },
     mounted() {},

@@ -6,7 +6,6 @@
             :playerYProp="playerY"
             :playerInventoryProp="playerInventory"
             :itemTypesProp="itemstypes"
-            :iconsProp="icons"
             :interactionLocationsProp="interactionLocations"
         ></gamefield>
     </div>
@@ -28,8 +27,8 @@ export default {
             playerY: 0,
             playerInventory: 0,
             itemstypes: [
-                { type: 0, name: "Leer" },
-                { type: 1, name: "Eisen", ticks: 2, nexttype: 2 },
+                { type: 0, name: "Leer", icon: "/images/blank.png", },
+                { type: 1, name: "Eisen", ticks: 2, nexttype: 2, icon: "/images/items/metal-bar.png", },
                 { type: 2, name: "Schmelzendes Eisen", ticks: 10, nexttype: 3 },
                 {
                     type: 3,
@@ -43,7 +42,7 @@ export default {
                     ticks: 1,
                     nexttype: 0,
                 },
-                { type: 10, name: "Holz", ticks: 10 },
+                { type: 10, name: "Holz", ticks: 10, icon: "/images/log.png", },
                 { type: 11, name: "Schwert Schaft", ticks: -1 },
                 { type: 12, name: "Axt Schaft", ticks: -1 },
                 { type: 13, name: "Harke Schaft", ticks: -1 },
@@ -60,43 +59,11 @@ export default {
                     type2: 11,
                     name: "Schwert",
                     time: 2000,
+					icon: "/images/items/broad-dagger.png",
                 },
-                { type: 101, type1: 21, type2: 12, name: "Axe", time: 4000 },
-                { type: 102, type1: 22, type2: 14, name: "Hammer", time: 1000 },
+                { type: 101, type1: 21, type2: 12, name: "Axe", time: 4000, icon: "/images/items/battle-axe.png", },
+                { type: 102, type1: 22, type2: 14, name: "Hammer", time: 1000, icon: "/images/items/claw-hammer.png", },
                 //{ type: 103, type1: 23, type2: 13, name: "Harke", time: 3000 },
-            ],
-            icons: [
-                {
-                    type: 0,
-                    name: "Leer",
-                    icon: "/images/blank.png",
-                },
-                {
-                    type: 0,
-                    name: "Schwert",
-                    icon: "/images/items/broad-dagger.png",
-                },
-                {
-                    name: "Axe",
-                    icon: "/images/items/battle-axe.png",
-                },
-                {
-                    name: "Hammer",
-                    icon: "/images/items/claw-hammer.png",
-                },
-                {
-                    name: "Harke",
-                    icon:
-                        "https://scratchwars.com/photos/zbrane_avatar/f/0/9.png?m=1485025836",
-                },
-                {
-                    name: "Eisen",
-                    icon: "/images/items/metal-bar.png",
-                },
-                {
-                    name: "Holz",
-                    icon: "/images/log.png",
-                },
             ],
             //Actions:
             // PICKUP_ACTION: 0,
@@ -159,7 +126,6 @@ export default {
             this.cnt = this.cnt + 1;
             let tmp = _.sample(this.ordertypes); //[Math.floor(Math.random()*this.ordertypes.length) | 0];
             tmp.id = this.cnt;
-            tmp.icon = this.icons.find((e) => e.name == tmp.name).icon;
             this.orders.push(Object.assign({}, tmp));
             return Object.assign({}, tmp);
         },
@@ -287,6 +253,11 @@ export default {
                                                     e.type ==
                                                     this.playerInventory
                                             ).ticks,
+											icon: this.itemstypes.find(
+                                                (e) =>
+                                                    e.type ==
+                                                    this.playerInventory
+                                            ).icon
                                         });
                                         this.playerInventory = 0;
                                     }
