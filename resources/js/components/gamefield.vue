@@ -54,9 +54,6 @@
                 </div>
                 <div>
                     <img src="/images/furnace.png" height="64px" />
-					<span v-for="item in furnaceInventoryProp" :key="item.type">
-						<img src="/images/metal-bar.png" height="32px" />
-					</span>
                 </div>
                 <div>
                     <img src="/images/cleaver.png" height="64px" />
