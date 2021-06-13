@@ -97,7 +97,7 @@
             <span>Inventory: {{ playerInventoryProp }}</span>
         </div>
         <div class="row">
-            <img v-bind:src="this.inventoryImage" height="64px" />
+            <img v-bind:src="itemTypesProp.find((e) => e.type == playerInventoryProp).icon" height="64px" />
         </div>
     </div>
 </template>
