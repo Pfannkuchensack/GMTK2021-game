@@ -184,9 +184,10 @@ export default {
         ticksystem() {
             console.log("tick");
             this.interactionLocations.forEach((location) => {
+				// Ticks für den Ofen -> Schmelzen
                 if (
                     typeof location.inventory != "undefined" &&
-                    location.inventory.length > 0
+                    location.inventory.length > 0 && location.name == 'Ofen'
                 ) {
                     location.inventory.forEach((item, i, a) => {
                         item.ticks--;
@@ -195,7 +196,10 @@ export default {
                                 this.itemstypes.find((e) => e.type == item.type)
                                     .nexttype == 0
                             )
+							{
                                 a.splice(i, 1);
+							}
+							// Umwandeln
                             item.type = this.itemstypes.find(
                                 (e) => e.type == item.type
                             ).nexttype;
@@ -205,6 +209,42 @@ export default {
                             item.ticks = this.itemstypes.find(
                                 (e) => e.type == item.type
                             ).ticks;
+                        }
+                    });
+                }
+
+				// Ticks für die Säge
+				if (
+                    typeof location.inventory != "undefined" &&
+                    location.inventory.length > 0 && location.name == 'Säge'
+                ) {
+                    location.inventory.forEach((item, i, a) => {
+                        item.ticks--;
+                        if (item.ticks == 0) {
+							// Umwandeln
+                            item.type = 11;
+							item.icon = this.itemstypes.find(
+                                (e) => e.type == item.type
+                            ).icon;
+                            item.ticks = -1;
+                        }
+                    });
+                }
+
+				// Ticks für die Anvil
+				if (
+                    typeof location.inventory != "undefined" &&
+                    location.inventory.length > 0 && location.name == 'Amboss'
+                ) {
+                    location.inventory.forEach((item, i, a) => {
+                        item.ticks--;
+                        if (item.ticks == 0) {
+							// Umwandeln
+                            item.type = 20;
+							item.icon = this.itemstypes.find(
+                                (e) => e.type == item.type
+                            ).icon;
+                            item.ticks = -1;
                         }
                     });
                 }
