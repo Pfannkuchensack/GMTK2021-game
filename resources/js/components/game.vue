@@ -5,6 +5,9 @@
             :playerXProp="playerX"
             :playerYProp="playerY"
             :playerInventoryProp="playerInventory"
+			:furnaceInventoryProp="interactionLocations[2].inventory"
+			:cleaverInventoryProp="interactionLocations[3].inventory"
+			:anvilInventoryProp="interactionLocations[3].inventory"
         ></gamefield>
     </div>
 </template>
@@ -104,7 +107,7 @@ export default {
                 {
                     name: "Ofen",
                     actionType: 2,
-                    x: 7,
+                    x: 4,
                     y: 2,
                     inventory: [],
                     inventorySize: 1,
@@ -113,7 +116,7 @@ export default {
                 {
                     name: "Säge",
                     actionType: 2,
-                    x: 7,
+                    x: 4,
                     y: 0,
                     inventory: [],
                     inventorySize: 1,
@@ -193,7 +196,7 @@ export default {
             function() {
                 this.ticksystem();
             }.bind(this),
-            200
+            1000
         );
 
         this._keyDownListener = function(e) {
