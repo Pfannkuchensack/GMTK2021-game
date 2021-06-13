@@ -5,6 +5,7 @@
       :playerXProp="playerX"
       :playerYProp="playerY"
       :playerInventoryProp="playerInventory"
+	  :playerScoreProp="playerScore"
       :itemTypesProp="itemstypes"
       :interactionLocationsProp="interactionLocations"
     ></gamefield>
@@ -25,6 +26,7 @@ export default {
       setinterval: false,
       playerX: 0,
       playerY: 0,
+	  playerScore: 0,
       playerInventory: 0,
       itemstypes: [
         { type: 0, name: "Leer", icon: "/images/blank.png" },
@@ -279,6 +281,7 @@ export default {
                 if (order.type == item.type) {
 				  aa.splice(ii, 1);
                   a.splice(i, 1);
+				  this.playerScore += 10;
 				  return true;
                 }
               });

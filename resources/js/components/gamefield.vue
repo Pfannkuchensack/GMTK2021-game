@@ -133,7 +133,7 @@
             </div>
         </div>
         <div class="row">
-            <span>Inventory: {{ playerInventoryProp }}</span>
+            <span>Score: {{ playerScoreProp }}</span>
         </div>
         <div class="row">
             <img
@@ -154,7 +154,8 @@ export default {
     props: {
         playerXProp: Number,
         playerYProp: Number,
-        playerInventoryProp: Number,
+        playerScoreProp: Number,
+		playerInventoryProp: Number,
         itemTypesProp: Array,
         interactionLocationsProp: Array,
     },
